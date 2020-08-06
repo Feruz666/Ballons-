@@ -16,9 +16,9 @@ class Balon(models.Model):
     )
     
     balon_num = models.CharField(max_length=150)
-    balon_status = models.CharField(max_length=150, choices=STATUSES)
-    balon_state = models.CharField(max_length=150, choices=STATES)
-    date = models.DateTimeField(default=now)
+    balon_status = models.CharField(max_length=150, choices=STATUSES, blank=True)
+    balon_state = models.CharField(max_length=150, choices=STATES, blank=True)
+    date = models.DateField(default=now)
     
     def __str__(self):
         return '{}'.format(self.balon_num)

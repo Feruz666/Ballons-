@@ -1,33 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% load static %}
+    
 </head>
 <body>
-    <h1>Hi there</h1>
-    <form action="/" method="POST">
-        {% csrf_token %}
+    <div class="nav-balons">
+        <div class="logo"></div>
+        <div class="calendar-place">
+            <input id="calendar_tr" placeholder="Введите дату..." type='text' value="" class="datepicker-here datepicker_custom" data-position="left top" />
+        </div>
+        </div>
+    </div>
 
-        {{ form.balon_num }} <br>
-        {{ form.balon_status }} <br>
-        {{ form.balon_state }} <br>
-        <p></p>
-
-        <input type="submit" value="Добавить">
-
-
-
-    </form>
-    <p></p>
-    <input type="date">  <button name="">
-    <p></p>
-
-    <p></p>
-    {% for balon in balons %}
-        <p>{{ balon.id }} -- {{ balon.balon_num }} -- {{ balon.balon_status }} -- {{ balon.balon_state }}</p>
-    {% endfor %}
-
+    <div class="card" id="card_board">
+        <div class="card-header" id="card_board_header">
+            <div class="card-header-title-place" id="card_header_title_place">
+                <div class="title-header" id="title_header">Назначение статуса баллонов</div>
+            </div>
+            <div class="minimize_btn" id="minimize_btn"></div>
+        </div>
+        <div class="card-body">
+            <form>
+                {% csrf_token %}
+                <div class="row">
+                    <br>
+                    <label style="margin-left:15px; margin-top:20px; font-family: Roboto; ">Номер баллона</label><br>
+                    <div class="col"><input type="text" id="id_balon_num" name="balon_num"></div>
+                    <div class="col" style="width: 120px; margin-left: 20px;">
+                        <select name="balon_status" id="id_balon_status">
+                        <option value="Склад">Склад</option>
+                        <option value="Город">Город</option>  
+                      </select>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col" style="width: 169px; margin-top: 10px;">
+                        <select name="balon_state" id="id_balon_state">
+                            <option value="Без действий">Без действий</option>
+                            <option value="Наполнение">Наполнение</option>
+                            <option value="Отбраковано">Отбраковано</option>
+                          </select>
+                    </div>
+                </div>
+                <hr style="margin-top:75px;">
+                <div class="btn" id="btn">Добавить</div>
+            </form>
+        </div>
+    </div>
+    <div class="card-board-maximized" id="card_board_maximized">
+        <div class="card-board-maximized-title" id="title_header">Назначение статуса баллонов</div>
+        <div class="maximize_btn" id="maximize_btn"></div>
+    </div>
+    <div class="container">
+        <div class="tabs">
+            <div class="tab">
+                <input type="radio" id="tab1" name="tab-group" checked>
+                <label for="tab1" class="tab-title">Склад</label> 
+                <section class="tab-content">
+                    <table class="pure-table pure-table-bordered">
+                        <thead>
+                            <th class="th-highlight">Номер баллона</th>
+                            <th>Местонахождение</th>
+                            <th>Состояние</th>
+                            <th>Дата внесения</th>
+                        </thead>
+                        <tbody id="data-container">
+                            
+                        </tbody>
+                    </table>
+                    <div id="pagination-container" class="paginationjs paginationjs-big"></div>
+                </section>
+            </div> 
+            <div class="tab">
+                <input type="radio" id="tab2" name="tab-group">
+                <label for="tab2" class="tab-title">Город</label> 
+                <section class="tab-content">
+                    <table class="pure-table pure-table-bordered">
+                        <thead>
+                            <th class="th-highlight">Номер баллона</th>
+                            <th>Местонахождение</th>
+                            <th>Состояние</th>
+                            <th>Дата внесения</th>
+                        </thead>
+                        <tbody id="data-container2">
+                            
+                        </tbody>
+                    </table>
+                    <div id="pagination-container2" class="paginationjs paginationjs-big"></div>
+                </section>  
+            </div>
+            <div class="tab">
+                <input type="radio" id="tab3" name="tab-group">
+                <label for="tab3" class="tab-title">Все</label> 
+                <section class="tab-content">
+                    <table class="pure-table pure-table-bordered">
+                        <thead>
+                            <th class="th-highlight">Номер баллона</th>
+                            <th>Местонахождение</th>
+                            <th>Состояние</th>
+                            <th>Дата внесения</th>
+                        </thead>
+                        <tbody id="data-container3">
+                            
+                        </tbody>
+                    </table>
+                    <div id="pagination-container3" class="paginationjs paginationjs-big"></div>
+                </section>  
+            </div>
+        </div>
+    </div>
+    <input type="date" name="true_calendar" id="true_calendar">
+    <link rel="stylesheet" href="{% static "balons/main.css" %}" >
+    <link rel="stylesheet" href="{% static "balons/animista.css" %}" >
+    <link rel="stylesheet" href="{% static "balons/pagination.css" %}" >
+    <link rel="stylesheet" href="{% static "balons/pure-min.css" %}" >
+    <link rel="stylesheet" href="{% static "balons/dist/css/datepicker.css" %}" >
+    <link rel="stylesheet" href="{% static "balons/toast/css/toast.css" %}" >
+    <script defer src="{% static "balons/jquery.js" %}"></script>
+    <script defer src="{% static "balons/pagination.js" %}"></script>
+    <script defer src="{% static "balons/dist/js/datepicker.js" %}"></script>
+    <script defer src="{% static "balons/date.format.js" %}"></script>
+    <script defer src="{% static "balons/toast/js/toast.js" %}"></script>
+    <script defer src="{% static "balons/main.js" %}"></script>
+    <script type="text/javascript">
+        let balons_json = "{{json}}";
+    </script>
+    
 </body>
 </html>

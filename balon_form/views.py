@@ -2,8 +2,15 @@ from django.shortcuts import render, redirect
 from .models import Balon
 from .forms import BalonForm
 from django.views.generic import TemplateView
+import json
+from django.core import serializers
+from datetime import datetime, date, time
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import BalonsSerializer
+from rest_framework.generics import get_object_or_404
 
-# Create your views here.
+
 
 
 class MainView(TemplateView):
@@ -30,37 +37,34 @@ class MainView(TemplateView):
     def get(self, request):
         form = BalonForm()
         balons = Balon.objects.all()
-        if request.method == 'GET':
-            pass
+        balons_json = serializers.serialize('json', balons)
+        return render(request, self.template_name, context={'balons':balons, 'form':form, 'json':balons_json})
 
-        return render(request, self.template_name, context={'balons':balons, 'form':form})
+class Api(APIView):
+    def get(self, request):
+        default_date = date.today()
+        date_s = request.GET.get('balon_date', default_date)
+        balons = Balon.objects.all().filter(date=date_s)
+        serializer = BalonsSerializer(balons, many=True)
+        return Response({"balons": serializer.data})
+    def post(self, request):
+        balons = request.data.get('balon')
+        serializer = BalonsSerializer(data=balons)
+        print(serializer)
+        if serializer.is_valid(raise_exception=True):
+            balons_saved = serializer.save()
+        return Response({"success": "balon '{}' created successfully".format(balons_saved.balon_num)})
 
+    def put(self, request, pk):
+        saved_balon = get_object_or_404(Balon.objects.all(), pk=pk)
+        data = request.data.get('balon')
+        serializer = BalonsSerializer(instance=saved_balon, data=data, partial=True)
 
-
-
-
-
-
-
-    # if request.method == 'POST':
-    #     balon_num = request.POST['balon_num']
-    #     balon_status = request.POST['balon_status']
-    #     balon_state = request.POST['balon_state']
-
-    #     x = Balon.objects.create(balon_num=balon_num,balon_status=balon_status,balon_state=balon_state)
-    #     x.save()
-    #     print("Balon has Created")
-    #     return redirect("/")
-    # return render(request, 'balon_form/index.html')
-
-
-       # def get(self, request):
-    #     form = BalonForm()
-    #     return render(request, 'balon_form/index.html', context={'form':form})
-
-    # def post(self, request):
-    #     bound_form = BalonForm(request.POST)
-
-    #     if bound_form.is_valid():
-    #         new_balon = bound_form.save()
-    #         return render(request, 'balon_form/index.html', context={'form': bound_form})
+        if serializer.is_valid(raise_exception=True):
+            balon_saved = serializer.save()
+        return Response({"success": "balon '{}' updated successfully".format(balon_saved.balon_num)})
+    
+    def delete(self, request, pk):
+        balon = get_object_or_404(Balon.objects.all(), pk=pk)
+        balon.delete()
+        return Response({"message": "balon with id `{}` has been deleted.".format(pk)}, status=204)

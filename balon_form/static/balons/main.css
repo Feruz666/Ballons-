@@ -1,0 +1,361 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+
+body{
+    background:#E5E5E5;
+    margin:0px;
+    padding:0px;
+}
+
+.nav-balons{
+    position: block;
+    width: 100;;
+    height: 90px;
+    /* left: 0px;
+    top: 0px; */
+    background: #597B93;
+    margin:0px;
+    padding:0px;
+}
+.logo{
+    display: inline-block;
+    width: 206px;
+    height: 72px;
+    margin-left: 20px;
+    margin-top: 5px;   
+    background: url(http://127.0.0.1:8000/static/balons/img/Obgaz2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.calendar{
+    position: absolute;
+    display: inline-block;
+    /* margin-top: 26px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+     */
+    left: calc(100vw - 45px);
+    top:20px;
+    width: 26px;
+    height: 26px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(http://127.0.0.1:8000/static/balons/img/cal_black.svg);
+}
+
+.card{
+    height: 320px;
+    width: 465px;
+    margin:0px;
+    padding: 0px;
+    display: block;
+    position: absolute;
+    top:200px;
+    left: 100px;
+    z-index: 1000;
+}
+
+.card-header{
+    width: 465px;
+    height: 60px;
+    background: #597B93;
+    border: 0.5px solid #4F4F4F;
+    backdrop-filter: blur(4px);
+}
+
+.card-body{
+    position: block;
+    width: 465px;
+    height: 260px;
+    background: #E1DCDC;
+    border: 0.5px solid #4F4F4F;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+.title-header{
+    display: inline-block;
+    width: 270px;
+    height: 25px;
+    margin:0px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    cursor: default;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.minimize_btn{
+    display: inline-block;
+    float:right;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-right: 20px;
+    width: 34px;
+    height: 34px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(http://127.0.0.1:8000/static/balons/img/chevron-down.svg);
+}
+
+.minimize_btn:hover{
+    background-image: url(http://127.0.0.1:8000/static/balons/img/chevron-down-red.svg);
+}
+
+.calendar:hover{
+    background-image: url(http://127.0.0.1:8000/static/balons/img/cal-red.svg);
+}
+
+.card-header-title-place{
+    padding:0px;
+    margin: 0px;
+    width: 400px;
+    height: 60px;
+    display: inline-block;
+}
+
+.card-board-maximized{
+    display: none;
+    position: absolute;
+    top: calc(100vh - 45px);
+    left: calc(100vw - 330px);
+    background-color: #597B93;
+    width: 320px;
+    height: 40px;
+}
+
+.card-board-maximized-title{
+    display: inline-block;
+    width: 270px;
+    height: 25px;
+    margin:0px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 10px;
+    cursor: default;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+    margin-top: 15px;
+    margin-left: 7px;
+}
+
+.maximize_btn{
+    display: inline-block;
+    float:right;
+    cursor: pointer;
+    margin-top: 3px;
+    margin-right: 5px;
+    width: 34px;
+    height: 34px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(http://127.0.0.1:8000/static/balons/img/chevron-up.svg);
+}
+
+.maximize_btn:hover{
+    background-image: url(http://127.0.0.1:8000/static/balons/img/chevron-up-red.svg);
+}
+
+.row{
+    display: block;
+    width: 465px;
+    height: 60px;
+}
+
+.col{
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+input[type="text"]{font: 15px/24px 'Roboto'; color: #333; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+
+.custom-select {
+    position: relative;
+    font-family: "Roboto";
+  }
+  
+  .custom-select select {
+    display: none; /*hide original SELECT element: */
+  }
+  
+  .select-selected {
+    background-color:#597B93;
+  }
+  
+  /* Style the arrow inside the select element: */
+  .select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
+  
+  /* Point the arrow upwards when the select box is open (active): */
+  .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+  }
+  
+  /* style the items (options), including the selected item: */
+  .select-items div,.select-selected {
+    color: #ffffff;
+    padding: 5px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+  }
+  
+  /* Style items (options): */
+  .select-items {
+    position: absolute;
+    background-color: #597B93;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+  
+  /* Hide the items when the select box is closed: */
+  .select-hide {
+    display: none;
+  }
+  
+  .select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .btn{
+    float:right; margin-right:20px; width: 100px; height: 30px; background-color: #597B93;
+    border: none;
+    font-family: "Roboto";
+    font-size: 14px;
+    text-align: center;
+    color: ivory;
+    line-height: 30px;
+  }
+
+.tabs {
+  position: relative; /* Относительное позиционирование */
+ }
+.tab, .tab-title {
+  display: inline-block; /* Выстраиваем по горизонтали */
+ }
+.tab input[type="radio"] { display: none; }
+.tab-title {
+    font-family: "Roboto";
+    font-size: 14px;
+    color:white;
+    background: #597B93; /* Цвет фона */
+    padding: 5px 10px; /* Поля вокруг текста */
+    border: 1px solid #597B93; /* Параметры рамки */
+    border-bottom: none; /* Снизу линию убираем */
+}
+.tab-content {
+  position: absolute; /* Абсолютное позиционирование */
+  border: 1px solid #666; /* Параметры рамки */
+  padding: 10px; /* Поля вокруг текста */
+  left: 0; /* Размещаем у левого края */
+  width: 800px;
+  height: 600px;
+  display: none; /* Прячем вкладку */
+}
+.tab :checked + .tab-title {
+  position: relative; /* Относительное позиционирование */
+  background: #fff; /* Цвет фона */
+  top: 1px; /* Сдвигаем вниз */
+  z-index: 1; /* Отображаем поверх содержимого */
+  color: #333;
+}
+.tab :checked ~ .tab-content {
+  display: block; /* Показываем активную вкладку */
+  background: #fff; /* Цвет фона */
+}
+
+.container{
+    width: 800px;
+    height: calc(100vh - 180px);
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+table{
+    width: 100%;
+}
+
+td{
+    height: 1vh;
+    margin-top: 5px;
+}
+
+.pagination_css{
+    list-style: none;
+    padding-left: 10px;
+}
+
+.th-highlight{
+    background-color: #ffea85;
+}
+
+.tb-highlight{
+    background-color: #f8f2da;
+}
+
+#pagination-container{
+    z-index: 500;
+    position: absolute;
+    top: 570px;
+}
+
+#pagination-container2{
+    z-index: 500;
+    position: absolute;
+    top: 570px;
+}
+#pagination-container3{
+    z-index: 500;
+    position: absolute;
+    top: 570px;
+}
+
+#true_calendar{
+    opacity: 0;
+}
+
+.calendar-label{
+    width: 200px;
+    height: 30px;
+    border: 1px solid;
+    display: inline-block;
+    margin-top:28px;
+}
+
+.calendar-place{
+    display: inline-block;
+    width: 150px;
+    float: right;
+    margin-right: 10px;
+}
+
+.datepicker_custom{
+    width: 100px;
+    display: inline-block;
+    margin-top: 20px;
+    padding-right: 10px;
+}
+
+.btn:hover{
+    cursor: pointer;
+    color:#FF0000;
+}

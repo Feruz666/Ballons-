@@ -17,5 +17,6 @@ STATES = (
 
 class BalonForm(forms.Form):
     balon_num = forms.CharField(max_length=100)
-    balon_status = forms.ChoiceField(choices = STATUSES)
-    balon_state = forms.ChoiceField(choices=STATES)
+    balon_status = forms.ChoiceField(choices = STATUSES,required=False)
+    balon_state = forms.ChoiceField(choices=STATES,required=False)
+    
